@@ -69,11 +69,9 @@ public class IndicatorMatchers {
         }
         
         public IndicatorMatcher build() {
-            return indicator -> {
-                return excludedIndicatorNames.stream().noneMatch(i -> indicator.getName().equals(i))
+            return indicator -> excludedIndicatorNames.stream().noneMatch(i -> indicator.getName().equals(i))
                         && (includedIndicatorNames.isEmpty()
                                 || includedIndicatorNames.stream().anyMatch(indicator.getName()::equals));
-            };
         }
         
     }

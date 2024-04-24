@@ -60,7 +60,7 @@ import com.netflix.runtime.health.core.caching.DefaultCachingHealthCheckAggregat
 public class HealthModule extends AbstractModule {
 
     @Override
-    final protected void configure() {
+    protected final void configure() {
         install(new InternalHealthModule());
         configureHealth();
     }
@@ -71,11 +71,11 @@ public class HealthModule extends AbstractModule {
     protected void configureHealth() {
     };
     
-    final protected LinkedBindingBuilder<HealthIndicator> bindAdditionalHealthIndicator() {
+    protected final LinkedBindingBuilder<HealthIndicator> bindAdditionalHealthIndicator() {
         return Multibinder.newSetBinder(binder(), HealthIndicator.class).addBinding();
     }
 
-    private final static class InternalHealthModule extends AbstractModule {
+    private static final class InternalHealthModule extends AbstractModule {
         
         @Provides
         @Singleton

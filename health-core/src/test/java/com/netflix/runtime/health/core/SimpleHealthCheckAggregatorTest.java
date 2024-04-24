@@ -127,8 +127,8 @@ public class SimpleHealthCheckAggregatorTest {
 	@Test(timeout=1000)
 	public void testWithDetails() throws Exception {
 		aggregator = new SimpleHealthCheckAggregator(Arrays.asList( 
-				(callback)->callback.inform(Health.healthy().withDetail("foo", "bar").build()),
-				(callback)->callback.inform(Health.unhealthy(new RuntimeException("Boom")).build())), 1, TimeUnit.SECONDS);
+				callback->callback.inform(Health.healthy().withDetail("foo", "bar").build()),
+				callback->callback.inform(Health.unhealthy(new RuntimeException("Boom")).build())), 1, TimeUnit.SECONDS);
 		HealthCheckStatus aggregatedHealth = aggregator.check().get();
 		assertFalse(aggregatedHealth.isHealthy());
 		assertEquals(2, aggregatedHealth.getHealthResults().size());

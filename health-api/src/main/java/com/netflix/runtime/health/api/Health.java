@@ -103,10 +103,10 @@ public final class Health {
 		return new Builder(health);
 	}
 
-	/**
-	 * Builder for creating immutable {@link Health} instances.
-	 */
-	public static class Builder {
+    /**
+     * Builder for creating immutable {@link Health} instances.
+     */
+    public static final class Builder {
 
 		private final boolean isHealthy;
 		private final Map<String, Object> details;

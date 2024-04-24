@@ -102,7 +102,7 @@ public class SimpleHealthCheckAggregator implements HealthCheckAggregator, Close
 
     public CompletableFuture<HealthCheckStatus> check(IndicatorMatcher matcher) {
         final List<HealthIndicatorCallbackImpl> callbacks = new ArrayList<>(indicators.size());
-        final CompletableFuture<HealthCheckStatus> future = new CompletableFuture<HealthCheckStatus>();
+        final CompletableFuture<HealthCheckStatus> future = new CompletableFuture<>();
         final AtomicInteger counter = new AtomicInteger(indicators.size());
         
         if (eventDispatcher != null) {
@@ -137,7 +137,7 @@ public class SimpleHealthCheckAggregator implements HealthCheckAggregator, Close
             
         }).collect(Collectors.toList());
                 
-        if(indicators.size() == 0) {
+        if(indicators.isEmpty()) {
         	future.complete(HealthCheckStatus.create(true, Collections.emptyList()));
         }
         
@@ -180,7 +180,7 @@ public class SimpleHealthCheckAggregator implements HealthCheckAggregator, Close
 		    	    return health;
 		    	}
 		    })
-		    .map(health -> health.isHealthy())
+		    .map(Health::isHealthy)
 		    .reduce(true, (a,b) -> a && b); 
 	    return HealthCheckStatus.create(isHealthy, healths, suppressedHealths);
 	}

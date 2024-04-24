@@ -25,7 +25,7 @@ import com.netflix.runtime.health.api.HealthIndicatorCallback;
  * @author elandau
  *
  */
-public class CachingHealthIndicator implements HealthIndicator {
+public final class CachingHealthIndicator implements HealthIndicator {
     private static class CacheEntry {
         private final long expirationTime;
         private final Health health;

@@ -60,9 +60,8 @@ public class CachingHealthIndicatorTest {
         CachingHealthIndicator cachedIndicator = CachingHealthIndicator.wrap(testHealthIndicator, 100,
                 TimeUnit.MILLISECONDS);
         for (int x = 0; x < 10; x++) {
-            cachedIndicator.check(h -> {
-                cachedCount.incrementAndGet();
-            });
+            cachedIndicator.check(h ->
+                cachedCount.incrementAndGet());
         }
         assertEquals(1, realCount.get());
         assertEquals(10, cachedCount.get());

@@ -48,10 +48,11 @@ public class SimpleHealthCheckAggregatorEventsTest {
 
             @Override
             public void check(HealthIndicatorCallback healthCallback) {
-                if (counter++ == 0)
+                if (counter++ == 0) {
                     healthCallback.inform(Health.healthy().build());
-                else
+                } else {
                     healthCallback.inform(Health.unhealthy().build());
+                }
             }
         };
     }
